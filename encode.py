@@ -55,10 +55,10 @@ def encode_word(callsign, locator, dbm):
     assert n_locator >= 179
     assert n_locator <= 32220
 
-    assert dbm > -64
-    assert dbm < 64
-    n_dbm = 64 + dbm
-
+    assert 0 <= dbm <= 60
+    corr = [0, -1, 1, 0, -1, 2, 1, 0, -1, 1]
+    n_dbm = dbm + corr[dbm % 10] + 64
+    
     n = (n_callsign << (15+7)) | (n_locator << 7) | n_dbm
 
     # MSB -> LSB order
