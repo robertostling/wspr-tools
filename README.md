@@ -6,7 +6,18 @@ Code for the WSPR protocol
 ```python3 encode.py callsign locator power```
 
 Currently only simple callsigns and 4-symbol locators are accepted. Power is
-in dBm.
+in dBm. This can be used directly for producing transmission sequences for the
+Arduino/AD9851 based transmitter below, or as a library to encode the WSPR
+protocol.
+
+## manual.py
+
+```python3 manual.py callsign locator power```
+
+Used to display the straight-key transmission sequence for a narrow-band
+frequency shift transmitter. Please refer to
+<a href="http://robos.org/sections/radio/wspr.html">my web page on
+non-standard WSPR equipment</a> for more information.
 
 ## arduino_ad9851.ino
 
