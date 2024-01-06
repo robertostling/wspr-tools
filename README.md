@@ -16,7 +16,7 @@ protocol.
 
 Used to display the straight-key transmission sequence for a narrow-band
 frequency shift transmitter. Please refer to
-<a href="http://robos.org/sections/radio/wspr.html">my web page on
+<a href="http://robos.org/sections/radio/wspr/">my web page on
 non-standard WSPR equipment</a> for more information.
 
 ## arduino_ad9851.ino
