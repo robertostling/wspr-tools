@@ -8,18 +8,23 @@ import time
 def display(symbols, output=False):
     assert len(symbols) == 162, len(symbols)
     baud = 1.4648
+    next_k = 20
     while True:
         dt = datetime.datetime.utcnow()
         # t is the offset from the start of the message
         t = (dt.minute % 2) * 60 + dt.second + 1e-6*dt.microsecond - 1
         n = int(t * baud)
         current = '_' if n < 0 or n >= 162 else symbols[n]
-        bit0 = int(isinstance(current, int) and current % 2 == 1)
-        bit1 = int(isinstance(current, int) and current >= 2)
+        upcoming = symbols[n:n+next_k]
+        upcoming = upcoming + [0]*(next_k-len(upcoming))
+        bits = [(x & 1, (x >> 1) & 1) for x in upcoming]
         # Display a # if the resistors coming from the VCO voltage should be
         # grounded. Left = bit0, right = bit1.
-        display = (' ' if bit0 else '#') + '    ' + (' ' if bit1 else '#')
-        print(f"\033[H\033[J{n:3d}     {display}", flush=True)
+        print(f"\033[H\033[J", end="")
+        for i, (bit0, bit1) in enumerate(bits):
+            display = (' ' if bit0 else '#') + '  ' + (' ' if bit1 else '#')
+            print(f"{n+i:3d}  [{display:64s}]")
+        print(flush=True)
         delay = (n+1)/baud - t
         time.sleep(delay)
 
