@@ -34,3 +34,17 @@ cycle.
 You could of course also take either of the sine wave outputs (ZOUT1, ZOUT2)
 and amplify or feed directly into a low-pass filter to the antenna.
 
+## make_table.py and make_sound.py
+
+Code to support completely analog operation. Run `make_table.py` and write
+down the printed table on a piece of paper, making sure to include the
+horizontal lines after every 9th symbol. I simply fill the indicated
+squares with a pencil, and the whole message takes three columns on a piece of
+A4 graph paper.
+
+Then run `make_sound.py`, which creates the file `ticks.wav`. This file can be
+played (by an analog tape player, perhaps?) starting at an even minute. You
+should have no problem following the beat when keying the message, but if you
+lose track at some point, the higher tone at the symbol *before* each 9-symbol
+block boundary can be used for synchronization.
+
